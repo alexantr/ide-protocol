@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
+using System.Net;
 using System.Text.RegularExpressions;
-using System.Web;
 
 if (args.Length > 0 && !string.IsNullOrWhiteSpace(args[0]))
 {
@@ -8,7 +8,7 @@ if (args.Length > 0 && !string.IsNullOrWhiteSpace(args[0]))
     Match m = Regex.Match(args[0], pattern);
     if (m.Success)
     {
-        string file = HttpUtility.UrlDecode(m.Groups[1].Value);
+        string file = WebUtility.UrlDecode(m.Groups[1].Value);
         file = file.Replace("/", "\\");
 
         Console.Write("File: ");
@@ -30,7 +30,7 @@ if (args.Length > 0 && !string.IsNullOrWhiteSpace(args[0]))
         if (arguments.Contains("%line%"))
             arguments = arguments.Replace("%line%", m.Groups[2].Value);
 
-        Console.WriteLine("Strating \"VS Code\"...");
+        Console.WriteLine("Starting \"VS Code\"...");
 
         Process.Start(new ProcessStartInfo
         {
